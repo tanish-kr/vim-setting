@@ -1,4 +1,5 @@
 neobundle.vim
+neocomplete.vim
 nerdtree
 tcomment_vim
 vim-endwise
