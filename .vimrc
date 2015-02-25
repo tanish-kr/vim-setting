@@ -86,6 +86,7 @@ filetype plugin indent on
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-endwise'
+NeoBundle 'tomtom/tcomment_vim'
 
 NeoBundleCheck
 
