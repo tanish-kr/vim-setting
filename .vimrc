@@ -85,6 +85,7 @@ filetype plugin indent on
 " install neobundle
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'tpope/vim-endwise'
 
 NeoBundleCheck
 
