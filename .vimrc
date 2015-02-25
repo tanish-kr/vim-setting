@@ -82,9 +82,19 @@ call neobundle#end()
 
 filetype plugin indent on
 
+" install neobundle
 NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'tpope/vim-fugitive'
+
 NeoBundleCheck
+
 
 "NERDTree自動設定
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+"fugitive設定
+"" grep検索の実行後にQuickFix Listを表示
+autocmd QuickFixCmdPost *grep* cwindow
+"" ステータス行に現在のgitブランチを表示する
+set statusline+=%{fugitive#statusline()}
