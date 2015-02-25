@@ -82,4 +82,9 @@ call neobundle#end()
 
 filetype plugin indent on
 
+NeoBundle 'scrooloose/nerdtree'
 NeoBundleCheck
+
+"NERDTree自動設定
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
