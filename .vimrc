@@ -15,10 +15,13 @@ set title
 "閉括弧に対応する括弧の強調表示
 set showmatch
 "シンタックスハイライト
-set syntax=on
+"set syntax=on
+set syntax=enable
 "タブ文字、空白文字、改行文字設定
 set list
-set listchars=tab:»-,trail:.,eol:¶,extends:»,precedes:«,nbsp:%
+" set listchars=tab:»-,trail:.,eol:¶,extends:»,precedes:«,nbsp:%
+" mac では段落記号が全角でしか認識しないため
+set listchars=tab:»-,trail:.,eol:↲,extends:»,precedes:«,nbsp:%
 "全角スペースの表示
 function! ZenkakuSpace()
     highlight ZenkakuSpace cterm=reverse ctermfg=DarkGray gui=reverse guifg=DarkGray
@@ -67,12 +70,12 @@ set clipboard+=unnamed
 if !1 | finish | endif
 
 if has('vim_starting')
-if &compatible
-set nocompatible               " Be iMproved
-endif
+  if &compatible
+    set nocompatible               " Be iMproved
+  endif
 
-"" neobundleをruntimepathに追加
-set runtimepath+=~/.vim/bundle/neobundle.vim/
+  "" neobundleをruntimepathに追加
+  set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 "" .vim/bundleを開始時に指定
 call neobundle#begin(expand('~/.vim/bundle/'))
@@ -107,7 +110,7 @@ set statusline+=%{fugitive#statusline()}
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_auto_colors = 0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd ctermbg=lightgrey
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=darkgrey
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=lightyellow
 
 set runtimepath+=~/.vim
 runtime! userautoload/*.vim
