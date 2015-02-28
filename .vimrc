@@ -64,6 +64,9 @@ set browsedir=buffer
 set clipboard+=autoselect
 ""yankしたテキストを*レジスタにも入れる
 set clipboard+=unnamed
+"カラーテーマ
+set background=dark
+colorscheme Tomorrow-Night
 
 "neobundle設定
 "Skip initialization for vim-tiny or vim-small.
@@ -109,8 +112,9 @@ set statusline+=%{fugitive#statusline()}
 " インデントの可視化
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_auto_colors = 0
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd ctermbg=lightgrey
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=lightyellow
+let g:indent_guides_guide_size = 1
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd guibg=lightgrey ctermbg=lightgrey
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=lightyellow ctermbg=lightyellow
 
 set runtimepath+=~/.vim
 runtime! userautoload/*.vim
