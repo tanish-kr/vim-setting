@@ -67,6 +67,12 @@ set clipboard+=unnamed
 "カラーテーマ
 set background=dark
 colorscheme Tomorrow-Night
+" splitキーバインド
+nnoremap s <Nop>
+nnoremap sj <C-w>j
+nnoremap sk <C-w>k
+nnoremap sl <C-w>l
+nnoremap sh <C-w>p
 
 "neobundle設定
 "Skip initialization for vim-tiny or vim-small.
