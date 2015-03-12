@@ -38,6 +38,7 @@ endif
 set paste
 "バックアップファイル非作成
 set nobackup
+set noundofile
 "エンコーディング
 set fileencoding=utf-8
 "改行コードをunixで保存
@@ -63,7 +64,7 @@ set browsedir=buffer
 ""ビジュアルモードで選択したテキストをクリップボードに入れる
 set clipboard+=autoselect
 ""yankしたテキストを*レジスタにも入れる
-set clipboard+=unnamed
+"set clipboard+=unnamed
 "カラーテーマ
 " set term=builtin_linux
 " set ttytype=builtin_linux
