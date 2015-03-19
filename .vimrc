@@ -70,17 +70,32 @@ set clipboard+=autoselect
 " set ttytype=builtin_linux
 set t_Co=256
 set background=dark
-colorscheme Tomorrow-Night-Bright
+colorscheme atom_dark
+"colorscheme Tomorrow-Night-Bright
 "colorscheme molokai
-" let g:molokai_original = 1
-" let g:rehash256 = 1
+let g:molokai_original = 1
+let g:rehash256 = 1
 
 " splitキーバインド
 nnoremap s <Nop>
+"" 画面移動
 nnoremap sj <C-w>j
 nnoremap sk <C-w>k
 nnoremap sl <C-w>l
 nnoremap sh <C-w>p
+"" 画面サイズ変更
+nnoremap s> <C-w>>
+nnoremap s< <C-w><
+nnoremap s= <C-w>=
+nnoremap s+ <C-w>+
+nnoremap s- <C-w>-
+"" 画面入れ替え
+nnoremap sH <C-w>H
+nnoremap sJ <C-w>J
+nnoremap sK <C-w>K
+nnoremap sL <C-w>L
+nnoremap sr <C-w>r
+
 
 "neobundle設定
 "Skip initialization for vim-tiny or vim-small.
@@ -138,6 +153,10 @@ let g:indent_guides_auto_colors = 0
 let g:indent_guides_guide_size = 1
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd guibg=lightgrey ctermbg=lightgrey
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=lightyellow ctermbg=lightyellow
+
+" vimshell
+let g:vimshell_prompt_expr = 'getcwd()." > "'
+let g:vimshell_prompt_pattern = '^\f\+ > '
 
 set runtimepath+=~/.vim
 runtime! userautoload/*.vim
