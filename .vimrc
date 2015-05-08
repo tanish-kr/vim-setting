@@ -12,6 +12,9 @@ set number
 set showmode
 "ウィンドウのタイトルを変更
 set title
+"終了時にターミナルのタイトルを戻す
+let &t_ti .= "\e[22;0t"
+let &t_te .= "\e[23;0t"
 "閉括弧に対応する括弧の強調表示
 set showmatch
 "シンタックスハイライト
