@@ -96,6 +96,8 @@ nnoremap sK <C-w>K
 nnoremap sL <C-w>L
 nnoremap sr <C-w>r
 
+" ruby 速度改善
+let g:ruby_path="~/.rbenv/versions/2.2.1/bin/ruby"
 
 "neobundle設定
 "Skip initialization for vim-tiny or vim-small.
@@ -124,7 +126,7 @@ NeoBundle 'tpope/vim-endwise'
 NeoBundle 'tomtom/tcomment_vim'
 NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'vim-scripts/dbext.vim'
-NeoBundle 'scrooloose/syntastic'
+" NeoBundle 'scrooloose/syntastic'
 NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'Shougo/vimshell.vim'
 NeoBundle 'Shougo/vimproc.vim',{
@@ -162,10 +164,10 @@ let g:vimshell_prompt_pattern = '^\f\+ > '
 
 " syntax check
 "" rubocopは常に最新のrubyから実行する
-let g:syntastic_ruby_rubocop_exec = '~/.rbenv/versions/2.2.1/bin/rubocop'
-let g:syntastic_ruby_checkers = ['rubocop']
-"" pep8はインストールされているversionを指定しておく
-let g:syntastic_python_pep8_exec = '~/.pyenv/versions/3.4.2/bin/pep8'
-let g:syntastic_python_checkers = ['pep8']
+"let g:syntastic_ruby_rubocop_exec = '~/.rbenv/versions/2.2.1/bin/rubocop'
+"let g:syntastic_ruby_checkers = ['rubocop']
+""" pep8はインストールされているversionを指定しておく
+"let g:syntastic_python_pep8_exec = '~/.pyenv/versions/3.4.2/bin/pep8'
+"let g:syntastic_python_checkers = ['pep8']
 set runtimepath+=~/.vim
 runtime! userautoload/*.vim
