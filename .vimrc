@@ -115,7 +115,7 @@ colorscheme atom_dark
 " nnoremap sr <C-w>r
 
 " ruby 速度改善
-let g:ruby_path="~/.rbenv/versions/2.2.1/bin/ruby"
+au BufNewFile, BufRead *.rb let g:ruby_path=system('rbenv prefix')
 
 "neobundle設定
 "Skip initialization for vim-tiny or vim-small.
@@ -146,7 +146,7 @@ NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'vim-scripts/dbext.vim'
 " NeoBundle 'scrooloose/syntastic'
 NeoBundle 'Shougo/neocomplete.vim'
-NeoBundle 'Shougo/vimshell.vim'
+" NeoBundle 'Shougo/vimshell.vim'
 NeoBundle 'Shougo/vimproc.vim',{
 \ 'build' : {
 \   'cygwin' : 'make -f make_cygwin.mak',
@@ -177,8 +177,8 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd guibg=lightgrey ctermbg=light
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=lightyellow ctermbg=lightyellow
 
 " vimshell
-let g:vimshell_prompt_expr = 'getcwd()." > "'
-let g:vimshell_prompt_pattern = '^\f\+ > '
+" let g:vimshell_prompt_expr = 'getcwd()." > "'
+" let g:vimshell_prompt_pattern = '^\f\+ > '
 
 " syntax check
 "" rubocopは常に最新のrubyから実行する
