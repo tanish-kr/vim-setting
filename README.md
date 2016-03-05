@@ -256,3 +256,32 @@ endif
 " https://github.com/c9s/perlomni.vim
 let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 ```
+
+### dbext設定
+db接続、補完、SQL実行が可能なvim plugin
+```vim
+" DBタイプを設定
+let dbext_default_type='PGSQL|MYSQL|SQLITE|ORA'
+" username
+let dbext_default_user='username'
+" password
+let dbext_default_passwd='password'
+" DB name
+let dbext_default_dbname='dbname'
+" host name
+let dbext_default_host='hostname'
+" port
+let dbext_default_port='port'
+" バッファに何行表示するか
+let dbext_default_buffer_lines='bufferline'
+" 履歴ファイルの設定
+let dbext_default_history_file='sql history file'
+" 履歴ファイルサイズの設定
+let dbext_default_history_size='sql history size'
+" 履歴ファイルへのエントリ数設定
+let dbext_default_history_max_entry='sql history max entry'
+" DB結果表示の最大行設定
+let dbext_default_DBI_max_rows='DBI max rows'
+" DB結果のでミリタ設定
+let dbext_default_DBI_column_delimiter='\t'
+```

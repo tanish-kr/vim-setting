@@ -12,6 +12,9 @@ set number
 set showmode
 "ウィンドウのタイトルを変更
 set title
+"終了時にターミナルのタイトルを戻す
+let &t_ti .= "\e[22;0t"
+let &t_te .= "\e[23;0t"
 "閉括弧に対応する括弧の強調表示
 set showmatch
 "シンタックスハイライト
@@ -75,9 +78,9 @@ set wildmenu
 set browsedir=buffer
 "クリップボード設定
 ""ビジュアルモードで選択したテキストをクリップボードに入れる
-set clipboard+=autoselect
+"set clipboard+=autoselect
 ""yankしたテキストを*レジスタにも入れる
-"set clipboard+=unnamed
+set clipboard+=unnamed
 "カラーテーマ
 " set term=builtin_linux
 " set ttytype=builtin_linux
@@ -109,6 +112,8 @@ colorscheme atom_dark
 " nnoremap sL <C-w>L
 " nnoremap sr <C-w>r
 
+" ruby 速度改善
+let g:ruby_path="~/.rbenv/versions/2.2.1/bin/ruby"
 
 "neobundle設定
 "Skip initialization for vim-tiny or vim-small.
@@ -136,6 +141,8 @@ NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-endwise'
 NeoBundle 'tomtom/tcomment_vim'
 NeoBundle 'nathanaelkane/vim-indent-guides'
+NeoBundle 'vim-scripts/dbext.vim'
+" NeoBundle 'scrooloose/syntastic'
 NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'Shougo/vimshell.vim'
 NeoBundle 'Shougo/vimproc.vim',{
@@ -171,5 +178,12 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=lightyellow ctermbg=li
 let g:vimshell_prompt_expr = 'getcwd()." > "'
 let g:vimshell_prompt_pattern = '^\f\+ > '
 
+" syntax check
+"" rubocopは常に最新のrubyから実行する
+"let g:syntastic_ruby_rubocop_exec = '~/.rbenv/versions/2.2.1/bin/rubocop'
+"let g:syntastic_ruby_checkers = ['rubocop']
+""" pep8はインストールされているversionを指定しておく
+"let g:syntastic_python_pep8_exec = '~/.pyenv/versions/3.4.2/bin/pep8'
+"let g:syntastic_python_checkers = ['pep8']
 set runtimepath+=~/.vim
 runtime! userautoload/*.vim
