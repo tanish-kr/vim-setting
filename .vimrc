@@ -121,19 +121,19 @@ au BufNewFile, BufRead *.rb let g:ruby_path=system('rbenv prefix')
 "Skip initialization for vim-tiny or vim-small.
 if !1 | finish | endif
 
-if has('vim_starting')
+" if has('vim_starting')
   if &compatible
     set nocompatible               " Be iMproved
   endif
 
   "" neobundleをruntimepathに追加
   set runtimepath+=~/.vim/bundle/neobundle.vim/
-endif
+" endif
 "" .vim/bundleを開始時に指定
 call neobundle#begin(expand('~/.vim/bundle/'))
+
 NeoBundleFetch 'Shougo/neobundle.vim'
 
-call neobundle#end()
 
 filetype plugin indent on
 
@@ -158,6 +158,7 @@ NeoBundle 'Shougo/vimproc.vim',{
 
 NeoBundleCheck
 
+call neobundle#end()
 
 "NERDTree自動設定
 autocmd StdinReadPre * let s:std_in=1
