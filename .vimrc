@@ -121,44 +121,51 @@ au BufNewFile, BufRead *.rb let g:ruby_path=system('rbenv prefix')
 "Skip initialization for vim-tiny or vim-small.
 if !1 | finish | endif
 
-" if has('vim_starting')
+if has('vim_starting')
   if &compatible
     set nocompatible               " Be iMproved
   endif
 
   "" neobundleをruntimepathに追加
   set runtimepath+=~/.vim/bundle/neobundle.vim/
-" endif
-"" .vim/bundleを開始時に指定
+endif
+" .vim/bundleを開始時に指定
 call neobundle#begin(expand('~/.vim/bundle/'))
 
-NeoBundleFetch 'Shougo/neobundle.vim'
+" cache読み込み
+if neobundle#load_cache()
 
+  NeoBundleFetch 'Shougo/neobundle.vim'
 
-filetype plugin indent on
+  " install neobundle
+  NeoBundle 'scrooloose/nerdtree'
+  NeoBundle 'tpope/vim-fugitive'
+  NeoBundle 'tpope/vim-endwise'
+  NeoBundle 'tomtom/tcomment_vim'
+  NeoBundle 'nathanaelkane/vim-indent-guides'
+  NeoBundle 'vim-scripts/dbext.vim'
+  " NeoBundle 'scrooloose/syntastic'
+  NeoBundle 'Shougo/neocomplete.vim'
+  " NeoBundle 'Shougo/vimshell.vim'
+  NeoBundle 'Shougo/vimproc.vim',{
+  \ 'build' : {
+  \   'cygwin' : 'make -f make_cygwin.mak',
+  \   'mac' : 'make -f make_mac.mak',
+  \   'linux' : 'make',
+  \   'unix' : 'gmake',
+  \   },
+  \}
 
-" install neobundle
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'tpope/vim-endwise'
-NeoBundle 'tomtom/tcomment_vim'
-NeoBundle 'nathanaelkane/vim-indent-guides'
-NeoBundle 'vim-scripts/dbext.vim'
-" NeoBundle 'scrooloose/syntastic'
-NeoBundle 'Shougo/neocomplete.vim'
-" NeoBundle 'Shougo/vimshell.vim'
-NeoBundle 'Shougo/vimproc.vim',{
-\ 'build' : {
-\   'cygwin' : 'make -f make_cygwin.mak',
-\   'mac' : 'make -f make_mac.mak',
-\   'linux' : 'make',
-\   'unix' : 'gmake',
-\   },
-\}
+  NeoBundleCheck
 
-NeoBundleCheck
+  " chace保存
+  NeoBundleSaveCache
+
+endif
 
 call neobundle#end()
+
+filetype plugin indent on
 
 "NERDTree自動設定
 autocmd StdinReadPre * let s:std_in=1
