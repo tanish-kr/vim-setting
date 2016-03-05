@@ -23,6 +23,8 @@ set syntax=enable
 " 折りたたみ
 set foldenable
 set foldmethod=syntax
+set foldlevel=1
+set foldnestmax=2
 
 autocmd InsertEnter * if !exists('w:last_fdm')
             \| let w:last_fdm=&foldmethod
