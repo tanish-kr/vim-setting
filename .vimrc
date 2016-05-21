@@ -195,5 +195,7 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=lightyellow ctermbg=li
 """ pep8はインストールされているversionを指定しておく
 "let g:syntastic_python_pep8_exec = '~/.pyenv/versions/3.4.2/bin/pep8'
 "let g:syntastic_python_checkers = ['pep8']
+" ruby dict setting
+autocmd FileType ruby :set dict+=~/.vim/dict/ruby-2.3.dict
 set runtimepath+=~/.vim
 runtime! userautoload/*.vim
