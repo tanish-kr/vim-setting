@@ -39,7 +39,7 @@ set syntax=enable
 "endif
 " 折りたたみ
 set foldmethod=syntax
-let perl_fold=1
+let perl_fold=3
 set foldlevel=100
 " vimgrep
 nnoremap [q :cprevious<CR>   " 前へ
@@ -113,6 +113,9 @@ nnoremap sK <C-w>K
 nnoremap sL <C-w>L
 nnoremap sr <C-w>r
 
+" ctags keybind
+nnoremap <c-[> :pop<CR>
+
 " ruby 速度改善
 " let g:ruby_path="~/.rbenv/versions/2.2.1/bin/ruby"
 
@@ -137,7 +140,7 @@ filetype plugin indent on
 syntax on
 
 " install neobundle
-" NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'bronson/vim-trailing-whitespace'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-endwise'
@@ -160,8 +163,8 @@ NeoBundleCheck
 
 
 "NERDTree自動設定
-" autocmd StdinReadPre * let s:std_in=1
-" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 "fugitive設定
 "" grep検索の実行後にQuickFix Listを表示
@@ -192,4 +195,5 @@ set statusline+=%{fugitive#statusline()}
 call neobundle#end()
 let g:neocomplete#enable_at_startup = 1
 set runtimepath+=~/.vim
+set dict+=~/.vim/dict/ruby-yard-tags.dict
 runtime! userautoload/*.vim
