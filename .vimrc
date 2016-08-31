@@ -38,7 +38,8 @@ set syntax=enable
 "    call ZenkakuSpace()
 "endif
 " 折りたたみ
-set foldmethod=syntax
+" set foldmethod=syntax
+set foldmethod=indent
 let perl_fold=3
 set foldlevel=100
 " vimgrep
@@ -46,6 +47,8 @@ nnoremap [q :cprevious<CR>   " 前へ
 nnoremap ]q :cnext<CR>       " 次へ
 nnoremap [Q :<C-u>cfirst<CR> " 最初へ
 nnoremap ]Q :<C-u>clast<CR>  " 最後へ
+" カーソル行可視化
+" set cursorline
 "ペーストモード
 set paste
 "バックアップファイル非作成
@@ -117,7 +120,7 @@ nnoremap sr <C-w>r
 nnoremap <c-[> :pop<CR>
 
 " ruby 速度改善
-" let g:ruby_path="~/.rbenv/versions/2.2.1/bin/ruby"
+let g:ruby_path="~/.rbenv/versions/2.3.1/bin/ruby"
 
 "neobundle設定
 "Skip initialization for vim-tiny or vim-small.
