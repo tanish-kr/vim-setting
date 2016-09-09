@@ -40,23 +40,38 @@ set list
 " set listchars=tab:»-,trail:.,eol:¶,extends:»,precedes:«,nbsp:%
 " mac では段落記号が全角でしか認識しないため
 set listchars=tab:»-,trail:.,eol:↲,extends:»,precedes:«,nbsp:%
+"シンタックスハイライト
+" set syntax=on
+set syntax=enable
 "全角スペースの表示
 function! ZenkakuSpace()
-    highlight ZenkakuSpace cterm=reverse ctermfg=DarkGray gui=reverse guifg=DarkGray
+   highlight ZenkakuSpace cterm=reverse ctermfg=DarkGray gui=reverse guifg=DarkGray
 endfunction
 if has('syntax')
-    augroup ZenkakuSpace
-        autocmd!
-        autocmd ColorScheme * call ZenkakuSpace()
-        autocmd VimEnter,WinEnter * match ZenkakuSpace /　/
-    augroup END
-    call ZenkakuSpace()
+   augroup ZenkakuSpace
+       autocmd!
+       autocmd ColorScheme * call ZenkakuSpace()
+       autocmd VimEnter,WinEnter * match ZenkakuSpace /　/
+   augroup END
+   call ZenkakuSpace()
 endif
+" 折りたたみ
+" set foldmethod=syntax
+set foldmethod=indent
+let perl_fold=3
+set foldlevel=100
+" vimgrep
+nnoremap [q :cprevious<CR>   " 前へ
+nnoremap ]q :cnext<CR>       " 次へ
+nnoremap [Q :<C-u>cfirst<CR> " 最初へ
+nnoremap ]Q :<C-u>clast<CR>  " 最後へ
+" カーソル行可視化
+" set cursorline
 "ペーストモード
 set paste
 "バックアップファイル非作成
 set nobackup
-set noundofile
+"set noundofile
 "エンコーディング
 set fileencoding=utf-8
 "改行コードをunixで保存
@@ -87,6 +102,11 @@ set clipboard+=unnamed
 " set term=builtin_linux
 " set ttytype=builtin_linux
 set t_Co=256
+if &term=="xterm"
+     set t_Co=8
+     set t_Sb=[4%dm
+     set t_Sf=[3%dm
+endif
 set background=dark
 colorscheme atom_dark
 "colorscheme Tomorrow-Night-Bright
@@ -114,8 +134,12 @@ colorscheme atom_dark
 " nnoremap sL <C-w>L
 " nnoremap sr <C-w>r
 
+" ctags keybind
+nnoremap <c-[> :pop<CR>
+
 " ruby 速度改善
 au BufNewFile, BufRead *.rb let g:ruby_path=system('rbenv prefix')
+let g:ruby_path="~/.rbenv/versions/2.3.1/bin/ruby"
 
 "neobundle設定
 "Skip initialization for vim-tiny or vim-small.
@@ -163,8 +187,6 @@ if neobundle#load_cache()
 
 endif
 
-call neobundle#end()
-
 filetype plugin indent on
 
 "NERDTree自動設定
@@ -185,8 +207,8 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd guibg=lightgrey ctermbg=light
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=lightyellow ctermbg=lightyellow
 
 " vimshell
-" let g:vimshell_prompt_expr = 'getcwd()." > "'
-" let g:vimshell_prompt_pattern = '^\f\+ > '
+"let g:vimshell_prompt_expr = 'getcwd()." > "'
+"let g:vimshell_prompt_pattern = '^\f\+ > '
 
 " syntax check
 "" rubocopは常に最新のrubyから実行する
@@ -196,6 +218,11 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=lightyellow ctermbg=li
 "let g:syntastic_python_pep8_exec = '~/.pyenv/versions/3.4.2/bin/pep8'
 "let g:syntastic_python_checkers = ['pep8']
 " ruby dict setting
-autocmd FileType ruby :set dict+=~/.vim/dict/ruby-2.3.dict
+" autocmd FileType ruby :set dict+=~/.vim/dict/ruby-2.3.dict
+
+
+call neobundle#end()
+let g:neocomplete#enable_at_startup = 1
 set runtimepath+=~/.vim
+set dict+=~/.vim/dict/ruby-yard-tags.dict
 runtime! userautoload/*.vim
