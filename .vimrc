@@ -38,10 +38,23 @@ set syntax=enable
 "    call ZenkakuSpace()
 "endif
 " 折りたたみ
-" set foldmethod=syntax
-set foldmethod=indent
+set foldmethod=syntax
+" set foldmethod=indent
 let perl_fold=3
-set foldlevel=100
+" set foldlevel=100
+set foldlevel=1
+set foldnestmax=3
+
+augroup foldmethod-syntax
+  autocmd!
+  autocmd InsertEnter * if &l:foldmethod ==# 'syntax'
+  \                   |   setlocal foldmethod=manual
+  \                   | endif
+  autocmd InsertLeave * if &l:foldmethod ==# 'manual'
+  \                   |   setlocal foldmethod=syntax
+  \                   | endif
+augroup END
+
 " vimgrep
 nnoremap [q :cprevious<CR>   " 前へ
 nnoremap ]q :cnext<CR>       " 次へ
