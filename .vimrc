@@ -20,11 +20,6 @@ set showmatch
 "シンタックスハイライト
 "set syntax=on
 set syntax=enable
-" 折りたたみ
-set foldenable
-set foldmethod=syntax
-set foldlevel=1
-set foldnestmax=2
 
 autocmd InsertEnter * if !exists('w:last_fdm')
             \| let w:last_fdm=&foldmethod
@@ -55,18 +50,27 @@ if has('syntax')
    augroup END
    call ZenkakuSpace()
 endif
+
 " 折りたたみ
+set foldenable
 " set foldmethod=syntax
 set foldmethod=indent
 let perl_fold=3
 set foldlevel=100
+set foldnestmax=2
+
 " vimgrep
 nnoremap [q :cprevious<CR>   " 前へ
 nnoremap ]q :cnext<CR>       " 次へ
 nnoremap [Q :<C-u>cfirst<CR> " 最初へ
 nnoremap ]Q :<C-u>clast<CR>  " 最後へ
+
+" スペルチェック
+set spell
+set spelllang=en,cjk
+
 " カーソル行可視化
-" set cursorline
+set cursorline
 "ペーストモード
 set paste
 "バックアップファイル非作成
@@ -162,6 +166,8 @@ if neobundle#load_cache()
   NeoBundleFetch 'Shougo/neobundle.vim'
 
   " install neobundle
+  NeoBundle 'bronson/vim-trailing-whitespace'
+  NeoBundle 'tpope/vim-surround'
   NeoBundle 'scrooloose/nerdtree'
   NeoBundle 'tpope/vim-fugitive'
   NeoBundle 'tpope/vim-endwise'
