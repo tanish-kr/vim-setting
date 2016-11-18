@@ -16,7 +16,17 @@ set title
 let &t_ti .= "\e[22;0t"
 let &t_te .= "\e[23;0t"
 "閉括弧に対応する括弧の強調表示
-" set showmatch
+set showmatch
+
+autocmd InsertEnter * if !exists('w:last_fdm')
+            \| let w:last_fdm=&foldmethod
+            \| setlocal foldmethod=manual
+            \| endif
+autocmd InsertLeave,WinLeave * if exists('w:last_fdm')
+            \| let &l:foldmethod=w:last_fdm
+            \| unlet w:last_fdm
+            \| endif
+
 "タブ文字、空白文字、改行文字設定
 set list
 set listchars=tab:»-,trail:.,eol:¶,extends:»,precedes:«,nbsp:%
@@ -24,26 +34,28 @@ set listchars=tab:»-,trail:.,eol:¶,extends:»,precedes:«,nbsp:%
 " set listchars=tab:»-,trail:.,eol:↲,extends:»,precedes:«,nbsp:%
 "シンタックスハイライト
 " set syntax=on
-set syntax=enable
+syntax enable
+
 "全角スペースの表示
-"function! ZenkakuSpace()
-"    highlight ZenkakuSpace cterm=reverse ctermfg=DarkGray gui=reverse guifg=DarkGray
-"endfunction
-"if has('syntax')
-"    augroup ZenkakuSpace
-"        autocmd!
-"        autocmd ColorScheme * call ZenkakuSpace()
-"        autocmd VimEnter,WinEnter * match ZenkakuSpace /　/
-"    augroup END
-"    call ZenkakuSpace()
-"endif
+function! ZenkakuSpace()
+   highlight ZenkakuSpace cterm=reverse ctermfg=DarkGray gui=reverse guifg=DarkGray
+endfunction
+if has('syntax')
+   augroup ZenkakuSpace
+       autocmd!
+       autocmd ColorScheme * call ZenkakuSpace()
+       autocmd VimEnter,WinEnter * match ZenkakuSpace /　/
+   augroup END
+   call ZenkakuSpace()
+endif
+
 " 折りたたみ
-set foldmethod=syntax
-" set foldmethod=indent
+set foldenable
+" set foldmethod=syntax
+set foldmethod=indent
 let perl_fold=3
-" set foldlevel=100
-set foldlevel=1
-set foldnestmax=3
+set foldlevel=100
+set foldnestmax=2
 
 augroup foldmethod-syntax
   autocmd!
@@ -60,13 +72,19 @@ nnoremap [q :cprevious<CR>   " 前へ
 nnoremap ]q :cnext<CR>       " 次へ
 nnoremap [Q :<C-u>cfirst<CR> " 最初へ
 nnoremap ]Q :<C-u>clast<CR>  " 最後へ
+
+" スペルチェック
+set spell
+" set spelllang=en,cjk
+
 " カーソル行可視化
-" set cursorline
+set cursorline
+
 "ペーストモード
 set paste
 "バックアップファイル非作成
 set nobackup
-"set noundofile
+set noundofile
 "エンコーディング
 set fileencoding=utf-8
 "改行コードをunixで保存
@@ -97,43 +115,53 @@ set clipboard+=unnamed
 " set term=builtin_linux
 " set ttytype=builtin_linux
 set t_Co=256
-" if &term=="xterm"
-"      set t_Co=8
-"      set t_Sb=[4%dm
-"      set t_Sf=[3%dm
-" endif
+if &term=="xterm"
+     set t_Co=8
+     set t_Sb=[4%dm
+     set t_Sf=[3%dm
+endif
+
 set background=dark
+autocmd ColorScheme * highlight Visual term=reverse cterm=reverse ctermfg=230 ctermbg=238 gui=reverse guifg=#ffffd7 guibg=#444444
+autocmd ColorScheme  * highlight LineNr term=underline ctermfg=195 ctermbg=242 guifg=#d7ffff guibg=#666666
+" autocmd ColorScheme  * highlight SpellBad term=reverse ctermbg=5 gui=undercurl guisp=#800080
+" autocmd ColorScheme  * highlight CursorLine term=underline ctermbg=234 guibg=#293739
+" autocmd ColorScheme  * highlight Comment term=bold ctermfg=59 guifg=#5f5f5f
 colorscheme atom_dark
 "colorscheme Tomorrow-Night-Bright
 "colorscheme molokai
-let g:molokai_original = 1
-let g:rehash256 = 1
+" let g:molokai_original = 1
+" let g:rehash256 = 1
 
 " splitキーバインド
-nnoremap s <Nop>
-"" 画面移動
-nnoremap sj <C-w>j
-nnoremap sk <C-w>k
-nnoremap sl <C-w>l
-nnoremap sh <C-w>p
-"" 画面サイズ変更
-nnoremap s> <C-w>>
-nnoremap s< <C-w><
-nnoremap s= <C-w>=
-nnoremap s+ <C-w>+
-nnoremap s- <C-w>-
-"" 画面入れ替え
-nnoremap sH <C-w>H
-nnoremap sJ <C-w>J
-nnoremap sK <C-w>K
-nnoremap sL <C-w>L
-nnoremap sr <C-w>r
+" nnoremap s <Nop>
+" "" 画面移動
+" nnoremap sj <C-w>j
+" nnoremap sk <C-w>k
+" nnoremap sl <C-w>l
+" nnoremap sh <C-w>p
+" "" 画面サイズ変更
+" nnoremap s> <C-w>>
+" nnoremap s< <C-w><
+" nnoremap s= <C-w>=
+" nnoremap s+ <C-w>+
+" nnoremap s- <C-w>-
+" "" 画面入れ替え
+" nnoremap sH <C-w>H
+" nnoremap sJ <C-w>J
+" nnoremap sK <C-w>K
+" nnoremap sL <C-w>L
+" nnoremap sr <C-w>r
+
+" ctags keybind
+nnoremap <c-[> :pop<CR>
 
 " ctags keybind
 nnoremap <c-[> :pop<CR>
 
 " ruby 速度改善
 let g:ruby_path="~/.rbenv/versions/2.3.1/bin/ruby"
+au BufNewFile, BufRead *.rb let g:ruby_path=system('rbenv prefix')
 
 "neobundle設定
 "Skip initialization for vim-tiny or vim-small.
@@ -147,37 +175,43 @@ if has('vim_starting')
   "" neobundleをruntimepathに追加
   set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
-"" .vim/bundleを開始時に指定
+" .vim/bundleを開始時に指定
 call neobundle#begin(expand('~/.vim/bundle/'))
-NeoBundleFetch 'Shougo/neobundle.vim'
 
+" cache読み込み
+if neobundle#load_cache()
+
+  NeoBundleFetch 'Shougo/neobundle.vim'
+
+  " install neobundle
+  NeoBundle 'bronson/vim-trailing-whitespace'
+  NeoBundle 'tpope/vim-surround'
+  NeoBundle 'scrooloose/nerdtree'
+  NeoBundle 'tpope/vim-fugitive'
+  NeoBundle 'tpope/vim-endwise'
+  NeoBundle 'tomtom/tcomment_vim'
+  NeoBundle 'nathanaelkane/vim-indent-guides'
+  NeoBundle 'vim-scripts/dbext.vim'
+  " NeoBundle 'scrooloose/syntastic'
+  NeoBundle 'Shougo/neocomplete.vim'
+  " NeoBundle 'Shougo/vimshell.vim'
+  NeoBundle 'Shougo/vimproc.vim',{
+  \ 'build' : {
+  \   'cygwin' : 'make -f make_cygwin.mak',
+  \   'mac' : 'make -f make_mac.mak',
+  \   'linux' : 'make',
+  \   'unix' : 'gmake',
+  \   },
+  \}
+
+  NeoBundleCheck
+
+  " chace保存
+  NeoBundleSaveCache
+
+endif
 
 filetype plugin indent on
-syntax on
-
-" install neobundle
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'bronson/vim-trailing-whitespace'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'tpope/vim-endwise'
-NeoBundle 'tomtom/tcomment_vim'
-NeoBundle 'nathanaelkane/vim-indent-guides'
-NeoBundle 'tpope/vim-surround'
-" NeoBundle 'vim-scripts/dbext.vim'
-" NeoBundle 'scrooloose/syntastic'
-" NeoBundle 'Shougo/neocomplete.vim'
-"NeoBundle 'Shougo/vimshell.vim'
-" NeoBundle 'Shougo/vimproc.vim',{
-" \ 'build' : {
-" \   'cygwin' : 'make -f make_cygwin.mak',
-" \   'mac' : 'make -f make_mac.mak',
-" \   'linux' : 'make',
-" \   'unix' : 'gmake',
-" \   },
-" \}
-
-NeoBundleCheck
-
 
 "NERDTree自動設定
 autocmd StdinReadPre * let s:std_in=1
@@ -190,11 +224,11 @@ autocmd QuickFixCmdPost *grep* cwindow
 set statusline+=%{fugitive#statusline()}
 
 " インデントの可視化
-" let g:indent_guides_enable_on_vim_startup = 1
-" let g:indent_guides_auto_colors = 0
-" let g:indent_guides_guide_size = 1
-" autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd guibg=lightgrey ctermbg=lightgrey
-" autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=lightyellow ctermbg=lightyellow
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_auto_colors = 0
+let g:indent_guides_guide_size = 1
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd guibg=lightgrey ctermbg=lightgrey
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=lightyellow ctermbg=lightyellow
 
 " vimshell
 "let g:vimshell_prompt_expr = 'getcwd()." > "'
@@ -207,6 +241,10 @@ set statusline+=%{fugitive#statusline()}
 """ pep8はインストールされているversionを指定しておく
 "let g:syntastic_python_pep8_exec = '~/.pyenv/versions/3.4.2/bin/pep8'
 "let g:syntastic_python_checkers = ['pep8']
+
+
+" ruby dict setting
+" autocmd FileType ruby :set dict+=~/.vim/dict/ruby-2.3.dict
 
 
 call neobundle#end()
