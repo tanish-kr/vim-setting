@@ -242,10 +242,13 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=lightyellow ctermbg=li
 "let g:syntastic_python_pep8_exec = '~/.pyenv/versions/3.4.2/bin/pep8'
 "let g:syntastic_python_checkers = ['pep8']
 
-
 " ruby dict setting
 " autocmd FileType ruby :set dict+=~/.vim/dict/ruby-2.3.dict
 
+" erb syntax
+autocmd BufRead,BufNewFile *.erb set filetype=eruby.html
+" coffee script syntax
+autocmd BufRead,BufNewFile *.coffee set filetype=coffee
 
 call neobundle#end()
 let g:neocomplete#enable_at_startup = 1
