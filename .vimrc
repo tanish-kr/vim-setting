@@ -55,7 +55,7 @@ set foldenable
 set foldmethod=indent
 let perl_fold=3
 set foldlevel=100
-set foldnestmax=2
+set foldnestmax=20
 
 augroup foldmethod-syntax
   autocmd!
@@ -81,7 +81,7 @@ set spell
 set cursorline
 
 "ペーストモード
-set paste
+" set paste
 "バックアップファイル非作成
 set nobackup
 set noundofile
@@ -192,6 +192,8 @@ if neobundle#load_cache()
   NeoBundle 'tomtom/tcomment_vim'
   NeoBundle 'nathanaelkane/vim-indent-guides'
   NeoBundle 'vim-scripts/dbext.vim'
+  NeoBundle 'soramugi/auto-ctags.vim'
+  NeoBundle 'kchmck/vim-coffee-script'
   " NeoBundle 'scrooloose/syntastic'
   NeoBundle 'Shougo/neocomplete.vim'
   " NeoBundle 'Shougo/vimshell.vim'
@@ -244,6 +246,13 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=lightyellow ctermbg=li
 
 " ruby dict setting
 " autocmd FileType ruby :set dict+=~/.vim/dict/ruby-2.3.dict
+
+" ctags連携
+if isdirectory(".git")
+  let g:auto_ctags = 1
+  let g:auto_ctags_directory_list = ['.git', '.svn']
+  set tags+=.git/tags
+endif
 
 " erb syntax
 autocmd BufRead,BufNewFile *.erb set filetype=eruby.html
