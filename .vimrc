@@ -77,6 +77,20 @@ nnoremap ]Q :<C-u>clast<CR>  " 最後へ
 set spell
 " set spelllang=en,cjk
 
+" 括弧自動挿入, 位置調整
+imap { {}<Left>
+" imap {<Enter> {}<Left><CR><ESC><S-o>
+imap [ []<Left>
+" imap [<Enter> []<Left><CR><ESC><S-o>
+imap ( ()<Left>
+" imap (<Enter> ()<Left><CR><ESC><S-o>
+imap " ""<Left>
+imap "" """<Left>
+imap ' ''<Left>
+imap ` ``<Left>
+imap < <><Left>
+imap / //<Left>
+
 " カーソル行可視化
 set cursorline
 
