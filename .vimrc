@@ -194,6 +194,7 @@ if neobundle#load_cache()
   NeoBundle 'vim-scripts/dbext.vim'
   NeoBundle 'soramugi/auto-ctags.vim'
   NeoBundle 'kchmck/vim-coffee-script'
+  NeoBundle 'ConradIrwin/vim-bracketed-paste'
   " NeoBundle 'scrooloose/syntastic'
   NeoBundle 'Shougo/neocomplete.vim'
   " NeoBundle 'Shougo/vimshell.vim'
