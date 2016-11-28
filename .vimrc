@@ -84,12 +84,12 @@ imap [ []<Left>
 " imap [<Enter> []<Left><CR><ESC><S-o>
 imap ( ()<Left>
 " imap (<Enter> ()<Left><CR><ESC><S-o>
-imap " ""<Left>
-imap "" """<Left>
-imap ' ''<Left>
-imap ` ``<Left>
-imap < <><Left>
-imap / //<Left>
+" imap " ""<Left>
+" imap "" """<Left>
+" imap ' ''<Left>
+" imap ` ``<Left>
+" imap < <><Left>
+" imap / //<Left>
 
 " カーソル行可視化
 set cursorline
