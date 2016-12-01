@@ -17,9 +17,6 @@ let &t_ti .= "\e[22;0t"
 let &t_te .= "\e[23;0t"
 "閉括弧に対応する括弧の強調表示
 set showmatch
-"シンタックスハイライト
-"set syntax=on
-set syntax=enable
 
 autocmd InsertEnter * if !exists('w:last_fdm')
             \| let w:last_fdm=&foldmethod
@@ -32,12 +29,18 @@ autocmd InsertLeave,WinLeave * if exists('w:last_fdm')
 
 "タブ文字、空白文字、改行文字設定
 set list
-" set listchars=tab:»-,trail:.,eol:¶,extends:»,precedes:«,nbsp:%
-" mac では段落記号が全角でしか認識しないため
-set listchars=tab:»-,trail:.,eol:↲,extends:»,precedes:«,nbsp:%
+
+if has("unix")
+  set listchars=tab:»-,trail:.,eol:¶,extends:»,precedes:«,nbsp:%
+elseif has("mac")
+  " mac では段落記号が全角でしか認識しないため
+  set listchars=tab:»-,trail:.,eol:↲,extends:»,precedes:«,nbsp:%
+endif
+
 "シンタックスハイライト
 " set syntax=on
-set syntax=enable
+syntax enable
+
 "全角スペースの表示
 function! ZenkakuSpace()
    highlight ZenkakuSpace cterm=reverse ctermfg=DarkGray gui=reverse guifg=DarkGray
@@ -57,7 +60,17 @@ set foldenable
 set foldmethod=indent
 let perl_fold=3
 set foldlevel=100
-set foldnestmax=2
+set foldnestmax=20
+
+augroup foldmethod-syntax
+  autocmd!
+  autocmd InsertEnter * if &l:foldmethod ==# 'syntax'
+  \                   |   setlocal foldmethod=manual
+  \                   | endif
+  autocmd InsertLeave * if &l:foldmethod ==# 'manual'
+  \                   |   setlocal foldmethod=syntax
+  \                   | endif
+augroup END
 
 " vimgrep
 nnoremap [q :cprevious<CR>   " 前へ
@@ -67,12 +80,27 @@ nnoremap ]Q :<C-u>clast<CR>  " 最後へ
 
 " スペルチェック
 set spell
-set spelllang=en,cjk
+" set spelllang=en,cjk
+
+" 括弧自動挿入, 位置調整
+imap { {}<Left>
+" imap {<Enter> {}<Left><CR><ESC><S-o>
+imap [ []<Left>
+" imap [<Enter> []<Left><CR><ESC><S-o>
+imap ( ()<Left>
+" imap (<Enter> ()<Left><CR><ESC><S-o>
+" imap " ""<Left>
+" imap "" """<Left>
+" imap ' ''<Left>
+" imap ` ``<Left>
+" imap < <><Left>
+" imap / //<Left>
 
 " カーソル行可視化
 set cursorline
+
 "ペーストモード
-set paste
+" set paste
 "バックアップファイル非作成
 set nobackup
 set noundofile
@@ -111,6 +139,7 @@ if &term=="xterm"
      set t_Sb=[4%dm
      set t_Sf=[3%dm
 endif
+
 set background=dark
 autocmd ColorScheme * highlight Visual term=reverse cterm=reverse ctermfg=230 ctermbg=238 gui=reverse guifg=#ffffd7 guibg=#444444
 autocmd ColorScheme  * highlight LineNr term=underline ctermfg=195 ctermbg=242 guifg=#d7ffff guibg=#666666
@@ -146,9 +175,12 @@ colorscheme atom_dark
 " ctags keybind
 nnoremap <c-[> :pop<CR>
 
+" ctags keybind
+nnoremap <c-[> :pop<CR>
+
 " ruby 速度改善
-au BufNewFile, BufRead *.rb let g:ruby_path=system('rbenv prefix')
 let g:ruby_path="~/.rbenv/versions/2.3.1/bin/ruby"
+au BufNewFile, BufRead *.rb let g:ruby_path=system('rbenv prefix')
 
 "neobundle設定
 "Skip initialization for vim-tiny or vim-small.
@@ -179,6 +211,9 @@ if neobundle#load_cache()
   NeoBundle 'tomtom/tcomment_vim'
   NeoBundle 'nathanaelkane/vim-indent-guides'
   NeoBundle 'vim-scripts/dbext.vim'
+  NeoBundle 'soramugi/auto-ctags.vim'
+  NeoBundle 'kchmck/vim-coffee-script'
+  NeoBundle 'ConradIrwin/vim-bracketed-paste'
   " NeoBundle 'scrooloose/syntastic'
   NeoBundle 'Shougo/neocomplete.vim'
   " NeoBundle 'Shougo/vimshell.vim'
@@ -228,9 +263,21 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=lightyellow ctermbg=li
 """ pep8はインストールされているversionを指定しておく
 "let g:syntastic_python_pep8_exec = '~/.pyenv/versions/3.4.2/bin/pep8'
 "let g:syntastic_python_checkers = ['pep8']
+
 " ruby dict setting
 " autocmd FileType ruby :set dict+=~/.vim/dict/ruby-2.3.dict
 
+" ctags連携
+if isdirectory(".git")
+  let g:auto_ctags = 1
+  let g:auto_ctags_directory_list = ['.git', '.svn']
+  set tags+=.git/tags
+endif
+
+" erb syntax
+autocmd BufRead,BufNewFile *.erb set filetype=eruby.html
+" coffee script syntax
+autocmd BufRead,BufNewFile *.coffee set filetype=coffee
 
 call neobundle#end()
 let g:neocomplete#enable_at_startup = 1
