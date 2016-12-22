@@ -218,6 +218,7 @@ if neobundle#load_cache()
   NeoBundle 'ConradIrwin/vim-bracketed-paste'
   " NeoBundle 'scrooloose/syntastic'
   NeoBundle 'Shougo/neocomplete.vim'
+  NeoBundle 'othree/html5.vim'
   " NeoBundle 'Shougo/vimshell.vim'
   NeoBundle 'Shougo/vimproc.vim',{
   \ 'build' : {
@@ -276,10 +277,31 @@ if isdirectory(".git")
   set tags+=.git/tags
 endif
 
+" pbcopy remoto連携(微妙だがmac以外)
+if executable("pbcopy") && !has("mac")
+  function! Yankc()
+    let tmpfile = '.vimreg' . getpid()
+    call writefile(split(getreg('*'),'\n'),tmpfile,"b")
+    call system('cat ' . tmpfile . ' | pbcopy > /dev/tty')
+    call system('rm ' . tmpfile)
+  endfunction
+  nnoremap yc :call Yankc()<CR>
+endif
+
 " erb syntax
-autocmd BufRead,BufNewFile *.erb set filetype=eruby.html
+" autocmd BufRead,BufNewFile *.erb set filetype=eruby.html
+autocmd BufRead,BufNewFile *.erb set filetype=eruby
 " coffee script syntax
 autocmd BufRead,BufNewFile *.coffee set filetype=coffee
+
+" event-handler attributes support
+let g:html5_event_handler_attributes_complete = 1
+" RDFa attributes support
+let g:html5_rdfa_attributes_complete = 1
+" microdata attributes support
+let g:html5_microdata_attributes_complete = 1
+" WAI-ARIA attribute support
+let g:html5_aria_attributes_complete = 1
 
 call neobundle#end()
 let g:neocomplete#enable_at_startup = 1
