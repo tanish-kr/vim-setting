@@ -72,29 +72,9 @@ augroup foldmethod-syntax
   \                   | endif
 augroup END
 
-" vimgrep
-nnoremap [q :cprevious<CR>   " 前へ
-nnoremap ]q :cnext<CR>       " 次へ
-nnoremap [Q :<C-u>cfirst<CR> " 最初へ
-nnoremap ]Q :<C-u>clast<CR>  " 最後へ
-
 " スペルチェック
 set spell
 " set spelllang=en,cjk
-
-" 括弧自動挿入, 位置調整
-imap { {}<Left>
-" imap {<Enter> {}<Left><CR><ESC><S-o>
-imap [ []<Left>
-" imap [<Enter> []<Left><CR><ESC><S-o>
-imap ( ()<Left>
-" imap (<Enter> ()<Left><CR><ESC><S-o>
-" imap " ""<Left>
-" imap "" """<Left>
-" imap ' ''<Left>
-" imap ` ``<Left>
-" imap < <><Left>
-" imap / //<Left>
 
 " カーソル行可視化
 set cursorline
@@ -152,6 +132,31 @@ colorscheme atom_dark
 " let g:molokai_original = 1
 " let g:rehash256 = 1
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" keybind
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" vimgrep
+nnoremap // :vimgrep
+nnoremap [q :cprevious<CR>   " 前へ
+nnoremap ]q :cnext<CR>       " 次へ
+nnoremap [Q :<C-u>cfirst<CR> " 最初へ
+nnoremap ]Q :<C-u>clast<CR>  " 最後へ
+
+" 括弧自動挿入, 位置調整
+inoremap { {}<Left>
+inoremap {<Enter> {}<Left><CR><ESC><S-o>
+inoremap [ []<Left>
+inoremap [<Enter> []<Left><CR><ESC><S-o>
+inoremap ( ()<Left>
+inoremap (<Enter> ()<Left><CR><ESC><S-o>
+inoremap " ""<Left>
+inoremap "" """<Left>
+inoremap ' ''<Left>
+inoremap ` ``<Left>
+inoremap < <><Left>
+inoremap / //<Left>
+
 " splitキーバインド
 " nnoremap s <Nop>
 " "" 画面移動
@@ -177,6 +182,15 @@ nnoremap <c-[> :pop<CR>
 
 " ctags keybind
 nnoremap <c-[> :pop<CR>
+
+" ESC keybind
+imap <C-j> <ESC>
+
+" tab keybind
+noremap <C-N> :tabn<CR>
+noremap <C-P> :tabp<CR>
+noremap! <C-N> :tabn<CR>
+noremap! <C-P> :tabp<CR>
 
 " ruby 速度改善
 let g:ruby_path="~/.rbenv/versions/2.3.1/bin/ruby"
