@@ -184,7 +184,7 @@ nnoremap <c-[> :pop<CR>
 nnoremap <c-[> :pop<CR>
 
 " ESC keybind
-imap <C-j> <ESC>
+imap <C-j> <ESC><Right>
 
 " tab keybind
 noremap <C-N> :tabn<CR>
