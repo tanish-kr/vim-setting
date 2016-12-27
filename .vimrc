@@ -30,8 +30,9 @@ autocmd InsertLeave,WinLeave * if exists('w:last_fdm')
 "タブ文字、空白文字、改行文字設定
 set list
 
-" mac では段落記号が全角でしか認識しないため
+
 if has("mac")
+  " mac では段落記号が全角でしか認識しないため
   set listchars=tab:»-,trail:.,eol:↲,extends:»,precedes:«,nbsp:%
 elseif has("unix")
   set listchars=tab:»-,trail:.,eol:¶,extends:»,precedes:«,nbsp:%
@@ -74,7 +75,9 @@ augroup END
 
 " スペルチェック
 set spell
-" set spelllang=en,cjk
+if has("mac")
+  set spelllang=en,cjk
+endif
 
 " カーソル行可視化
 set cursorline
