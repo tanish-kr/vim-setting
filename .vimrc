@@ -30,11 +30,11 @@ autocmd InsertLeave,WinLeave * if exists('w:last_fdm')
 "タブ文字、空白文字、改行文字設定
 set list
 
-if has("unix")
-  set listchars=tab:»-,trail:.,eol:¶,extends:»,precedes:«,nbsp:%
-elseif has("mac")
-  " mac では段落記号が全角でしか認識しないため
+" mac では段落記号が全角でしか認識しないため
+if has("mac")
   set listchars=tab:»-,trail:.,eol:↲,extends:»,precedes:«,nbsp:%
+elseif has("unix")
+  set listchars=tab:»-,trail:.,eol:¶,extends:»,precedes:«,nbsp:%
 endif
 
 "シンタックスハイライト
