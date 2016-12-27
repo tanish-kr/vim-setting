@@ -285,3 +285,13 @@ let dbext_default_DBI_max_rows='DBI max rows'
 " DB結果のでミリタ設定
 let dbext_default_DBI_column_delimiter='\t'
 ```
+
+## 手動で入れないと行けないもの
+
+### nerdtree grep
+
+NERDTreeのmenuにgrepを追加する
+
+```console
+$ cd ~/.vim/bundle/nerdtree/nerdtree_plugin && wget --no-check-certificate https://gist.githubusercontent.com/masaakif/414375/raw/24c6049f621f07db839e8cdd133e396756d642db/grep_menuitem.vim
+```
