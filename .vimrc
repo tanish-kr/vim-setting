@@ -158,7 +158,7 @@ inoremap "" """<Left>
 inoremap ' ''<Left>
 inoremap ` ``<Left>
 inoremap <<Space> <><Left>
-inoremap / //<Left>
+inoremap /<Space> //<Left>
 
 " ;と:を入れ替える
 nnoremap ; :
