@@ -154,8 +154,18 @@ inoremap " ""<Left>
 inoremap "" """<Left>
 inoremap ' ''<Left>
 inoremap ` ``<Left>
-inoremap < <><Left>
+inoremap <<Space> <><Left>
 inoremap / //<Left>
+
+" ;と:を入れ替える
+nnoremap ; :
+nnoremap ; :
+
+" 入力しづらいキーをマッピング
+nnoremap <Space>h ^
+nnoremap <Space>l $
+nnoremap <Space>/ *
+
 
 " splitキーバインド
 " nnoremap s <Nop>
@@ -180,11 +190,8 @@ inoremap / //<Left>
 " ctags keybind
 nnoremap <c-[> :pop<CR>
 
-" ctags keybind
-nnoremap <c-[> :pop<CR>
-
 " ESC keybind
-imap <C-j> <ESC><Right>
+imap <C-f> <ESC><Right>
 
 " tab keybind
 noremap <C-N> :tabn<CR>
