@@ -171,24 +171,24 @@ nnoremap <Space>/ *
 
 
 " splitキーバインド
-" nnoremap s <Nop>
-" "" 画面移動
-" nnoremap sj <C-w>j
-" nnoremap sk <C-w>k
-" nnoremap sl <C-w>l
-" nnoremap sh <C-w>p
-" "" 画面サイズ変更
-" nnoremap s> <C-w>>
-" nnoremap s< <C-w><
-" nnoremap s= <C-w>=
-" nnoremap s+ <C-w>+
-" nnoremap s- <C-w>-
-" "" 画面入れ替え
-" nnoremap sH <C-w>H
-" nnoremap sJ <C-w>J
-" nnoremap sK <C-w>K
-" nnoremap sL <C-w>L
-" nnoremap sr <C-w>r
+nnoremap s <Nop>
+"" 画面移動
+nnoremap sj <C-w>j
+nnoremap sk <C-w>k
+nnoremap sl <C-w>l
+nnoremap sh <C-w>p
+"" 画面サイズ変更
+nnoremap s> <C-w>>
+nnoremap s< <C-w><
+nnoremap s= <C-w>=
+nnoremap s+ <C-w>+
+nnoremap s- <C-w>-
+"" 画面入れ替え
+nnoremap sH <C-w>H
+nnoremap sJ <C-w>J
+nnoremap sK <C-w>K
+nnoremap sL <C-w>L
+nnoremap sr <C-w>r
 
 " ctags keybind
 nnoremap <c-[> :pop<CR>
