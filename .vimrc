@@ -202,6 +202,12 @@ noremap <C-P> :tabp<CR>
 noremap! <C-N> :tabn<CR>
 noremap! <C-P> :tabp<CR>
 
+" 大文字小文字の誤爆を防ぐ
+vnoremap u <Nop>
+vnoremap U <Nop>
+noremap gu <Nop>
+noremap gU <Nop>
+
 " ruby 速度改善
 let g:ruby_path="~/.rbenv/versions/2.3.1/bin/ruby"
 au BufNewFile, BufRead *.rb let g:ruby_path=system('rbenv prefix')
