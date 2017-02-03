@@ -195,6 +195,7 @@ nnoremap <c-[> :pop<CR>
 
 " ESC keybind
 imap <C-f> <ESC><Right>
+vmap <C-j> <ESC><Right>
 
 " tab keybind
 noremap <C-N> :tabn<CR>
