@@ -150,11 +150,12 @@ nnoremap ]Q :<C-u>clast<CR>  " 最後へ
 inoremap { {}<Left>
 inoremap {<Enter> {}<Left><CR><ESC><S-o>
 inoremap [ []<Left>
-inoremap [<Enter> []<Left><CR><ESC><S-o>
+inoremap [ []<Left><CR><ESC><S-o>
 inoremap ( ()<Left>
 inoremap (<Enter> ()<Left><CR><ESC><S-o>
+inoremap """<Enter> """<Left><CR><ESC><S-o>
 inoremap " ""<Left>
-inoremap "" """<Left>
+" inoremap """<Space> """<Left>
 inoremap ' ''<Left>
 inoremap ` ``<Left>
 inoremap <<Space> <><Left>
