@@ -150,7 +150,7 @@ nnoremap ]Q :<C-u>clast<CR>  " 最後へ
 inoremap { {}<Left>
 inoremap {<Enter> {}<Left><CR><ESC><S-o>
 inoremap [ []<Left>
-inoremap [ []<Left><CR><ESC><S-o>
+inoremap [<Enter> []<Left><CR><ESC><S-o>
 inoremap ( ()<Left>
 inoremap (<Enter> ()<Left><CR><ESC><S-o>
 inoremap """<Enter> """<Left><CR><ESC><S-o>
@@ -246,6 +246,14 @@ if neobundle#load_cache()
   NeoBundle 'soramugi/auto-ctags.vim'
   NeoBundle 'kchmck/vim-coffee-script'
   NeoBundle 'ConradIrwin/vim-bracketed-paste'
+  NeoBundle 'leafgarland/typescript-vim', {
+  \ 'autoload' : {
+  \   'filetypes' : ['typescript']
+    \}
+  \}
+  NeoBundle 'clausreinke/typescript-tools.vim', {
+  \ 'do' : 'npm install'
+  \}
   " NeoBundle 'scrooloose/syntastic'
   NeoBundle 'Shougo/neocomplete.vim'
   NeoBundle 'othree/html5.vim'
@@ -323,6 +331,10 @@ endif
 autocmd BufRead,BufNewFile *.erb set filetype=eruby
 " coffee script syntax
 autocmd BufRead,BufNewFile *.coffee set filetype=coffee
+" typescript file type
+autocmd BufRead,BufNewFile *.ts setlocal filetype=typescript
+let g:typescript_compiler_binary = 'tsc'
+let g:typescript_compiler_options = ''
 
 " event-handler attributes support
 let g:html5_event_handler_attributes_complete = 1
