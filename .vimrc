@@ -241,7 +241,7 @@ if neobundle#load_cache()
   NeoBundle 'tomtom/tcomment_vim'
   NeoBundle 'nathanaelkane/vim-indent-guides'
   NeoBundle 'vim-scripts/dbext.vim'
-  NeoBundle 'soramugi/auto-ctags.vim'
+  " NeoBundle 'soramugi/auto-ctags.vim'
   NeoBundle 'kchmck/vim-coffee-script'
   NeoBundle 'derekwyatt/vim-scala'
   NeoBundle 'ConradIrwin/vim-bracketed-paste'
@@ -309,9 +309,21 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=lightyellow ctermbg=li
 
 " ctags連携
 if isdirectory(".git")
-  let g:auto_ctags = 1
-  let g:auto_ctags_directory_list = ['.git', '.svn']
-  set tags+=.git/tags
+  " let g:auto_ctags = 1
+  " let g:auto_ctags_directory_list = ['.git', '.svn']
+  function! GenerateCtags()
+    let langs = ['HTML', 'Java', 'JavaScript', 'PHP', 'Python', 'Ruby']
+    for lang in langs
+      call system('ctags -R --tag-relative=yes --sort=yes --append=no --languages='. lang .' --exclude="tmp" --exclude="cache" --exclude="test" -f .git/' . lang . '_tags 2> /dev/null')
+    endfor
+  endfunction
+  " set tags+=.git/tags
+  command! Ctags :call GenerateCtags()
+  autocmd BufRead,BufNewFile *.php set tags=.git/PHP_tags
+  autocmd BufRead,BufNewFile *.rb set tags=.git/Ruby_tags
+  autocmd BufRead,BufNewFile *.java set tags=.git/Java_tags
+  autocmd BufRead,BufNewFile *.js set tags=.git/JavaScript_tags
+  autocmd BufRead,BufNewFile *.py set tags=.git/Python_tags
 endif
 
 " pbcopy remoto連携(微妙だがmac以外)
