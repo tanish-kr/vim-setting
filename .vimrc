@@ -245,6 +245,7 @@ if neobundle#load_cache()
   NeoBundle 'vim-scripts/dbext.vim'
   NeoBundle 'soramugi/auto-ctags.vim'
   NeoBundle 'kchmck/vim-coffee-script'
+  NeoBundle 'derekwyatt/vim-scala'
   NeoBundle 'ConradIrwin/vim-bracketed-paste'
   NeoBundle 'leafgarland/typescript-vim', {
   \ 'autoload' : {
@@ -336,6 +337,8 @@ autocmd BufRead,BufNewFile *.ts setlocal filetype=typescript
 let g:typescript_compiler_binary = 'tsc'
 let g:typescript_compiler_options = ''
 
+autocmd BufRead,BufNewFile *.sbt setlocal filetype=scala
+
 " event-handler attributes support
 let g:html5_event_handler_attributes_complete = 1
 " RDFa attributes support
@@ -344,6 +347,14 @@ let g:html5_rdfa_attributes_complete = 1
 let g:html5_microdata_attributes_complete = 1
 " WAI-ARIA attribute support
 let g:html5_aria_attributes_complete = 1
+
+" close html, xlm tag
+augroup MyXML
+  autocmd!
+  autocmd FileType xml inoremap <buffer> </ </<C-x><C-o>
+  autocmd FileType html inoremap <buffer> </ </<C-x><C-o>
+  autocmd FileType eruby inoremap <buffer> </ </<C-x><C-o>
+augroup END
 
 call neobundle#end()
 let g:neocomplete#enable_at_startup = 1
