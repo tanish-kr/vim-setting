@@ -256,7 +256,7 @@ if neobundle#load_cache()
   \ 'do' : 'npm install'
   \}
   " NeoBundle 'scrooloose/syntastic'
-  NeoBundle 'Shougo/neocomplete.vim'
+  " NeoBundle 'Shougo/neocomplete.vim'
   NeoBundle 'othree/html5.vim'
   " NeoBundle 'Shougo/vimshell.vim'
   NeoBundle 'Shougo/vimproc.vim',{
@@ -357,7 +357,7 @@ augroup MyXML
 augroup END
 
 call neobundle#end()
-let g:neocomplete#enable_at_startup = 1
+" let g:neocomplete#enable_at_startup = 1
 set runtimepath+=~/.vim
 set dict+=~/.vim/dict/ruby-yard-tags.dict
 runtime! userautoload/*.vim
