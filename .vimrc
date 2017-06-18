@@ -199,10 +199,8 @@ imap <C-f> <ESC><Right>
 vmap <C-j> <ESC><Right>
 
 " tab keybind
-noremap <C-N> :tabn<CR>
-noremap <C-P> :tabp<CR>
-noremap! <C-N> :tabn<CR>
-noremap! <C-P> :tabp<CR>
+nnoremap <C-N> :tabn<CR>
+nnoremap <C-P> :tabp<CR>
 
 " 大文字小文字の誤爆を防ぐ
 vnoremap u <Nop>
