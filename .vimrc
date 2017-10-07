@@ -274,6 +274,7 @@ if neobundle#load_cache()
 endif
 
 filetype plugin indent on
+set omnifunc=syntaxcomplete#Complete
 
 "NERDTree自動設定
 autocmd StdinReadPre * let s:std_in=1
