@@ -241,10 +241,12 @@ if neobundle#load_cache()
   NeoBundle 'tomtom/tcomment_vim'
   NeoBundle 'nathanaelkane/vim-indent-guides'
   NeoBundle 'vim-scripts/dbext.vim'
+  NeoBundle 'thinca/vim-quickrun'
   " NeoBundle 'soramugi/auto-ctags.vim'
   NeoBundle 'kchmck/vim-coffee-script'
   NeoBundle 'derekwyatt/vim-scala'
   NeoBundle 'ConradIrwin/vim-bracketed-paste'
+  NeoBundle 'kitaro-tn/vim-header'
   NeoBundle 'leafgarland/typescript-vim', {
   \ 'autoload' : {
   \   'filetypes' : ['typescript']
@@ -359,6 +361,12 @@ let g:html5_microdata_attributes_complete = 1
 " WAI-ARIA attribute support
 let g:html5_aria_attributes_complete = 1
 
+" Add header
+let g:header_field_author = 'Tatsunori Nishikori'
+let g:header_field_author_email = 'tora.1986.tatsu@gmail.com'
+let g:header_auto_add_header = 0
+map <Tab>h :AddHeader<CR>
+
 " close html, xlm tag
 augroup MyXML
   autocmd!
@@ -366,6 +374,13 @@ augroup MyXML
   autocmd FileType html inoremap <buffer> </ </<C-x><C-o>
   autocmd FileType eruby inoremap <buffer> </ </<C-x><C-o>
 augroup END
+
+" quickrun setting
+let g:quickrun_config = get(g:, 'quickrun_config', {})
+let g:quickrun_config._ = {
+      \ 'outputter/buffer/split'  : ':rightbelow 8sp',
+      \ 'outputter/buffer/close_on_empty' : 1,
+      \ }
 
 call neobundle#end()
 " let g:neocomplete#enable_at_startup = 1
