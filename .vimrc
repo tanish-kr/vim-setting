@@ -209,8 +209,50 @@ noremap gu <Nop>
 noremap gU <Nop>
 
 " ruby 速度改善
-let g:ruby_path="~/.rbenv/versions/2.3.1/bin/ruby"
+" let g:ruby_path="~/.rbenv/versions/2.3.1/bin/ruby"
 au BufNewFile, BufRead *.rb let g:ruby_path=system('rbenv prefix')
+
+" 新規作成時テンプレート利用
+if has("autocmd")
+  augroup templates
+    au!
+    if expand('%:p:h') =~ 'src\|lib\|app'
+      autocmd BufNewFile *.* silent! execute '0r $HOME/.vim/template/skelton_class.'.expand("<afile>:e")
+    elseif expand('%:p:h') =~ 'test'
+      autocmd BufNewFile *.* silent! execute '0r $HOME/.vim/template/skelton_test.'.expand("<afile>:e")
+    elseif expand('%:p:h') =~ 'spec'
+      autocmd BufNewFile *.* silent! execute '0r $HOME/.vim/template/skelton_spec.'.expand("<afile>:e")
+    else
+      autocmd BufNewFile *.* silent! execute '0r $HOME/.vim/template/skelton.'.expand("<afile>:e")
+    endif
+    autocmd BufNewFile * %substitute#\[:VIM_EVAL:\]\(.\{-\}\)\[:END_EVAL:\]#\=eval(submatch(1))#ge
+  augroup END
+endif
+
+function! Template(type)
+  let pos = getpos('.')
+  let template_path = $HOME . "/.vim/template/"
+  let template = ""
+  if a:type =~ 'class'
+    let template_path .= "skelton_class.".expand("%:e")
+  elseif a:type =~ 'test'
+    let template_path .= "skelton_test.".expand("%:e")
+  elseif a:type =~ 'spec'
+    let template_path .= "skelton_spec.".expand("%:e")
+  else
+    let template_path .= "skelton.".expand("%:e")
+  endif
+  for line in readfile(template_path)
+    let template .= line . "\n"
+  endfor
+  " echo template
+  let template = template|substitute#\[:VIM_EVAL:\]\(.\{-\}\)\[:END_EVAL:\]#\=eval(submatch(1))#ge
+  execute ":normal i" . template
+  call setpos('.', pos)
+  " return substitute(template, '\[:VIM_EVAL:\]\(.\{-\}\)\[:END_EVAL:\]', '\=eval(submatch(1))', 'g')
+endfunction
+command! -nargs=+ Template :call Template(<f-args>)
+
 
 "neobundle設定
 "Skip initialization for vim-tiny or vim-small.
