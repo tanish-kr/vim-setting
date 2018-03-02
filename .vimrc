@@ -17,6 +17,9 @@ let &t_ti .= "\e[22;0t"
 let &t_te .= "\e[23;0t"
 "閉括弧に対応する括弧の強調表示
 set showmatch
+" スタータスを常に表示
+set laststatus=2
+set statusline=%f\ [%{&fileencoding}]\ [C:%c]\ [L:%l/%L]\ %r
 
 autocmd InsertEnter * if !exists('w:last_fdm')
             \| let w:last_fdm=&foldmethod
@@ -208,6 +211,7 @@ vnoremap U <Nop>
 noremap gu <Nop>
 noremap gU <Nop>
 
+
 " ruby 速度改善
 let g:ruby_path="~/.rbenv/versions/2.3.1/bin/ruby"
 au BufNewFile, BufRead *.rb let g:ruby_path=system('rbenv prefix')
@@ -256,7 +260,7 @@ if neobundle#load_cache()
   \ 'do' : 'npm install'
   \}
   " NeoBundle 'scrooloose/syntastic'
-  " NeoBundle 'Shougo/neocomplete.vim'
+  NeoBundle 'Shougo/neocomplete.vim'
   NeoBundle 'othree/html5.vim'
   " NeoBundle 'Shougo/vimshell.vim'
   NeoBundle 'Shougo/vimproc.vim',{
@@ -286,7 +290,7 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 "" grep検索の実行後にQuickFix Listを表示
 autocmd QuickFixCmdPost *grep* cwindow
 "" ステータス行に現在のgitブランチを表示する
-set statusline+=%{fugitive#statusline()}
+set statusline+=%=%{fugitive#statusline()}
 
 " インデントの可視化
 let g:indent_guides_enable_on_vim_startup = 1
@@ -382,8 +386,9 @@ let g:quickrun_config._ = {
       \ 'outputter/buffer/close_on_empty' : 1,
       \ }
 
+
 call neobundle#end()
-" let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_at_startup = 1
 set runtimepath+=~/.vim
 set dict+=~/.vim/dict/ruby-yard-tags.dict
 runtime! userautoload/*.vim
