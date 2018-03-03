@@ -255,7 +255,7 @@ function! Template(type)
   call setpos('.', pos)
   " return substitute(template, '\[:VIM_EVAL:\]\(.\{-\}\)\[:END_EVAL:\]', '\=eval(submatch(1))', 'g')
 endfunction
-command! -nargs=+ Template :call Template(<f-args>)
+command! -nargs=? Template :call Template(<f-args>)
 
 
 "neobundle設定
