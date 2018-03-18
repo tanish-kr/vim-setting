@@ -21,6 +21,9 @@ set showmatch
 set laststatus=2
 set statusline=%f\ [%{&fileencoding}]\ [C:%c]\ [L:%l/%L]\ %r
 
+" 最後に改行なしファイルでは改行勝手に入れない
+set nofixeol
+
 autocmd InsertEnter * if !exists('w:last_fdm')
             \| let w:last_fdm=&foldmethod
             \| setlocal foldmethod=manual
