@@ -4,4 +4,5 @@
   url = https://github.com/Shougo/neobundle.vim.git
 [submodule ".vim/vundle/dein.vim"]
 	path = .vim/vundle/dein.vim
-	url = https://github.com/Shougo/dein.vim.git
+  url = https://github.com/Shougo/dein.vim.git
+  ignore = dirty
