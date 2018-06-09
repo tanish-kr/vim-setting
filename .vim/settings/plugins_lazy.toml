@@ -33,3 +33,18 @@ autocmd BufReadPre *.js let b:javascript_lib_use_jquery = 1
 autocmd BufReadPre *.ts let b:javascript_lib_use_angularjs = 1
 autocmd BufReadPre *.vue let b:javascript_lib_use_vue = 1
 '''
+
+# elixir
+[[plugins]]
+repo = 'elixir-editors/vim-elixir'
+
+# ruby
+[[plugins]]
+repo = 'vim-ruby/vim-ruby'
+
+[[plugins]]
+repo = 'fishbullet/deoplete-ruby'
+
+[[plugins]]
+repo = 'tpope/vim-endwise'
+on_ft = 'ruby'

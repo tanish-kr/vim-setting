@@ -1,6 +1,9 @@
 # 補完
 [[plugins]]
 repo = 'Shougo/deoplete.nvim'
+hook_source = '''
+let g:deoplete#enable_at_startup = 1
+'''
 
 [[plugins]]
 repo = 'roxma/nvim-yarp'

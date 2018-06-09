@@ -23,7 +23,8 @@ syntax enable
 filetype plugin indent on
 " オムニ補完有効
 set omnifunc=syntaxcomplete#Complete
-
+" ユーザ補完
+set completefunc=syntaxcomplete#Complete
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " テンプレート
