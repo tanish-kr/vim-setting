@@ -34,6 +34,11 @@ autocmd BufReadPre *.ts let b:javascript_lib_use_angularjs = 1
 autocmd BufReadPre *.vue let b:javascript_lib_use_vue = 1
 '''
 
+# python autocomplete jedi
+[[plugins]]
+repo = 'davidhalter/jedi-vim'
+on_ft = 'python'
+
 # elixir
 [[plugins]]
 repo = 'elixir-editors/vim-elixir'
@@ -48,3 +53,8 @@ repo = 'fishbullet/deoplete-ruby'
 [[plugins]]
 repo = 'tpope/vim-endwise'
 on_ft = 'ruby'
+
+# go
+[[plugins]]
+repo = 'fatih/vim-go'
+on_ft = 'go'
