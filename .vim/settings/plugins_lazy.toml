@@ -33,6 +33,7 @@ autocmd BufReadPre *.js let b:javascript_lib_use_jquery = 1
 autocmd BufReadPre *.ts let b:javascript_lib_use_angularjs = 1
 autocmd BufReadPre *.vue let b:javascript_lib_use_vue = 1
 '''
+on_ft = 'javascript'
 
 # python autocomplete jedi
 [[plugins]]
@@ -42,13 +43,16 @@ on_ft = 'python'
 # elixir
 [[plugins]]
 repo = 'elixir-editors/vim-elixir'
+on_ft = 'elixir'
 
 # ruby
 [[plugins]]
 repo = 'vim-ruby/vim-ruby'
+on_ft = 'ruby'
 
 [[plugins]]
 repo = 'fishbullet/deoplete-ruby'
+on_ft = 'ruby'
 
 [[plugins]]
 repo = 'tpope/vim-endwise'
