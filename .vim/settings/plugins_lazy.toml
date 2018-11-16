@@ -53,3 +53,8 @@ repo = 'fishbullet/deoplete-ruby'
 [[plugins]]
 repo = 'tpope/vim-endwise'
 on_ft = 'ruby'
+
+# go
+[[plugins]]
+repo = 'fatih/vim-go'
+on_ft = 'go'
