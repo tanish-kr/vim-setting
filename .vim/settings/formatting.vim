@@ -13,6 +13,7 @@ set softtabstop=2
 set smarttab
 "ペーストモード
 " set paste
+set nopaste
 
 "クリップボード設定
 "" ビジュアルモードで選択したテキストをクリップボードに入れる

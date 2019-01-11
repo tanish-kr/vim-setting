@@ -22,7 +22,7 @@ set browsedir=buffer
 " let g:ruby_path="~/.rbenv/versions/2.3.1/bin/ruby"
 " au BufNewFile, BufRead *.rb let g:ruby_path=system('rbenv prefix')
 " au BufNewFile, BufRead *.rb let g:ruby_path=system('which ruby')
-" au BufNewFile, BufRead *.rb let g:ruby_path=system('echo $HOME/.anyenv/envs/rbenv/shims')
+au BufNewFile, BufRead *.rb let g:ruby_path=system('echo $HOME/.anyenv/envs/rbenv/shims')
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "  Explore
