@@ -78,3 +78,7 @@ on_ft = 'ruby'
 [[plugins]]
 repo = 'fatih/vim-go'
 on_ft = 'go'
+
+[[plugins]]
+repo = 'vim-scripts/SQLUtilities'
+on_ft = 'sql'
