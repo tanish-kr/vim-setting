@@ -118,3 +118,7 @@ if executable("pbcopy") && !has("mac")
   endfunction
   nnoremap yc :call Yankc()<CR>
 endif
+
+set re=1
+set ttyfast
+set lazyredraw

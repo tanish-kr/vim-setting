@@ -13,6 +13,7 @@ set softtabstop=2
 set smarttab
 "ペーストモード
 " set paste
+set nopaste
 
 "クリップボード設定
 "" ビジュアルモードで選択したテキストをクリップボードに入れる
@@ -53,4 +54,5 @@ autocmd InsertLeave,WinLeave * if exists('w:last_fdm')
             \| endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 syntax enable
