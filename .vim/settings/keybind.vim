@@ -7,7 +7,7 @@ set nocompatible
 nnoremap <ESC><ESC> :nohlsearch<CR>
 
 " vimgrep
-nnoremap // :vimgrep
+nnoremap // :Egrep
 nnoremap [q :cprevious<CR>   " 前へ
 nnoremap ]q :cnext<CR>       " 次へ
 nnoremap [Q :<C-u>cfirst<CR> " 最初へ

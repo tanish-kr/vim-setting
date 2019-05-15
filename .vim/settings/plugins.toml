@@ -71,3 +71,7 @@ let g:ale_ruby_rubocop_executable = 'bundle'
 
 [[plugins]]
 repo = 'vim-scripts/Align'
+
+# 外部のgrepを検索で利用する
+[[plugins]]
+repo = 'vim-scripts/grep.vim'
