@@ -38,11 +38,15 @@ if &term=="xterm"
      set t_Sf=[3%dm
 endif
 
-set background=dark
+" syntax enable
+set background=light
+" set background=dark
 autocmd ColorScheme * highlight Visual term=reverse cterm=reverse ctermfg=230 ctermbg=238 gui=reverse guifg=#ffffd7 guibg=#444444
 autocmd ColorScheme  * highlight LineNr term=underline ctermfg=195 ctermbg=242 guifg=#d7ffff guibg=#666666
-colorscheme atom_dark
-" colorscheme solarized
+" colorscheme atom_dark
+" colorscheme monokai
+colorscheme solarized
+" colorscheme PaperColor
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 全角スペースの表示

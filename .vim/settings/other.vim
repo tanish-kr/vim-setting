@@ -120,6 +120,10 @@ if executable("pbcopy") && !has("mac")
   nnoremap yc :call Yankc()<CR>
 endif
 
+" python3
+" set pythonthreedll=/usr/local/Cellar/python/3.7.3/Frameworks/Python.framework/Versions/3.7/Python
+
+
 set re=1
 set ttyfast
 set lazyredraw
