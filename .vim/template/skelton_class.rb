@@ -1,4 +1,4 @@
-# coding: utf-8
+# frozen_string_literal: true
 
 ##
 # class [:VIM_EVAL:]substitute(expand("%:t:r"), '\(^\|_\)\(.\)', '\u\2', 'g')[:END_EVAL:]
