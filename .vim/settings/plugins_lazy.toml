@@ -1,9 +1,7 @@
 # toml syntax highlight
 [[plugins]]
 repo = 'cespare/vim-toml'
-on_ft = 'toml'
-
-# typescript syntax highlight
+on_ft = 'toml' # typescript syntax highlight
 [[plugins]]
 repo = 'leafgarland/typescript-vim'
 on_ft = 'typescript'
@@ -100,3 +98,15 @@ on_ft = 'sql'
 [[plugins]]
 repo = 'posva/vim-vue'
 on_ft = 'vue'
+
+# Markdown
+[[plugins]]
+repo = 'plasticboy/vim-markdown'
+on_ft = 'markdown'
+
+[[plugins]]
+repo = 'previm/previm'
+on_ft = 'markdown'
+hook_add = '''
+let g:previm_open_cmd = 'open -a Firefox\ Developer\ Edition'
+'''
