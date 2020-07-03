@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-# coding: utf-8
+# frozen_string_literal: true
 #
 # Author        : [:VIM_EVAL:]$USER[:END_EVAL:]
 # Since         : [:VIM_EVAL:]strftime('%Y-%m-%d')[:END_EVAL:]
