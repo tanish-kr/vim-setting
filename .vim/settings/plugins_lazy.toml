@@ -110,3 +110,11 @@ on_ft = 'markdown'
 hook_add = '''
 let g:previm_open_cmd = 'open -a Firefox\ Developer\ Edition'
 '''
+
+[[plugins]]
+repo = 'lambdalisue/vim-gista'
+on_cmd = 'Gista'
+hook_add = '''
+let g:gista#github_user = 'tanish-kr'
+let g:gista#client#default_username = 'tanish-kr'
+'''
