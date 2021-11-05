@@ -41,6 +41,10 @@ endif
 set background=dark
 autocmd ColorScheme * highlight Visual term=reverse cterm=reverse ctermfg=230 ctermbg=238 gui=reverse guifg=#ffffd7 guibg=#444444
 autocmd ColorScheme  * highlight LineNr term=underline ctermfg=195 ctermbg=242 guifg=#d7ffff guibg=#666666
+autocmd ColorScheme  * highlight Directory ctermfg=33 guifg=#008BCF
+autocmd ColorScheme  * highlight FernBranchText ctermfg=12 guifg=#008BCF
+
+" colorscheme molokai
 colorscheme atom_dark
 " colorscheme solarized
 
