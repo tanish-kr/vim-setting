@@ -9,6 +9,12 @@ set runtimepath+=~/.vim/vundle/dein.vim
 if dein#load_state(s:dein_dir)
  call dein#begin(s:dein_dir)
 
+ if has('win32') || has('win64')
+   call dein#add('tbodt/deoplete-tabnine', { 'build': 'powershell.exe .\install.ps1' })
+ else
+   call dein#add('tbodt/deoplete-tabnine', { 'build': './install.sh' })
+ endif
+
  call dein#load_toml("~/.vim/settings/plugins.toml", { 'lazy': 0 })
  call dein#load_toml("~/.vim/settings/plugins_lazy.toml", { 'lazy': 1 })
 

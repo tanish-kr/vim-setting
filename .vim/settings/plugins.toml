@@ -101,8 +101,8 @@ let g:asyncomplete_log_file = expand('~/asyncomplete.log')
 [[plugins]]
 repo = 'prabirshrestha/asyncomplete-lsp.vim'
 
-[[plugins]]
-repo = 'zxqfl/tabnine-vim'
+# [[plugins]]
+# repo = 'zxqfl/tabnine-vim'
 
 [[plugins]]
 repo = 'skanehira/translate.vim'
