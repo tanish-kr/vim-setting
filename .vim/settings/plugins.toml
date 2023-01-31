@@ -59,7 +59,7 @@ let g:strip_whitespace_on_save=1
 repo = 'tomtom/tcomment_vim'
 
 [[plugins]]
-repo = 'w0rp/ale'
+repo = 'dense-analysis/ale'
 hook_add = '''
 let b:ale_linters = {'ruby': ['rubocop']}
 let g:ale_set_loclist = 0
